@@ -16,7 +16,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div>REACT 18</div>
-        <input type="text" onChange={(event) => updateFilterHandler(event, setFilterTerm, startTransition)} />
+        <input type="text" placeholder="Search content" onChange={(event) => updateFilterHandler(event, setFilterTerm, startTransition)} />
         {/* {isPending && <p style={{color: 'white'}}>Updating List...</p>} */}
         <Posts filteredPosts={filteredPosts}/>
       </header>
