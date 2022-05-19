@@ -1,0 +1,35 @@
+ul {
+    list-style: none;
+    margin: 2rem;
+    padding: 0;
+  }
+  
+  li {
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: #ddb0eb;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  }
+  
+  .post {
+    background-color: #fff;
+    border-radius: 12px;
+    box-sizing: border-box;
+    min-height: 200px;
+    margin-top: 20px;
+    padding: 30px;
+    text-align: left;
+  }
+  
+  .post h3 {
+    font-size: 20px;
+    margin: 0;
+    color: orange;
+  }
+  
+  .post p {
+    margin: 16px 0 0 0;
+    line-height: 32px;
+    color: #282c34; 
+  }

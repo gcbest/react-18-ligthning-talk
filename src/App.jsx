@@ -1,15 +1,17 @@
 import { useState } from 'react'
-import { generateProducts } from './utils/data';
-import ProductList from './components/ProductList';
+import { generatePosts } from './utils/data';
+import Posts from './components/Posts';
 
 import './App.css'
 
-const dummyProducts = generateProducts();
+const dummyPosts = generatePosts();
+const ALICE = 'Alice';
+const BOB = 'Bob';
 
 function App() {
   const [selectedPerson, setSelectedPerson] = useState('');
 
-  const filteredProducts = filterProducts(selectedPerson);
+  const filteredPosts = filterPosts(selectedPerson);
   
   return (
     <div className="App">
@@ -17,26 +19,30 @@ function App() {
         <div>REACT 18</div>
         <div>Person Selected: {selectedPerson}</div>
         <div>
-          <button className={selectedPerson === 'Alice' ? 'active' : ''} onClick={() => handleClick('Alice', setSelectedPerson)}>Alice</button>
-          <button className={selectedPerson === 'Bob' ? 'active' : ''} onClick={() => handleClick('Bob', setSelectedPerson)}>Bob</button>
+          <button className={selectedPerson === ALICE ? 'active' : ''} onClick={() => handleClick(ALICE, selectedPerson, setSelectedPerson)}>{ALICE}</button>
+          <button className={selectedPerson === BOB ? 'active' : ''} onClick={() => handleClick(BOB, selectedPerson, setSelectedPerson)}>{BOB}</button>
         </div>
-        <ProductList products={filteredProducts} />
+        <Posts filteredPosts={filteredPosts}/>
       </header>
 
     </div>
   )
 }
 
-const filterProducts = (filterTerm) => {
+const filterPosts = (filterTerm) => {
   if (!filterTerm) {
-    return dummyProducts;
+    return dummyPosts;
   }
-  return dummyProducts.filter((product) => product.author.includes(filterTerm));
+  return dummyPosts.filter((product) => product.author.includes(filterTerm));
 }
 
-const handleClick = (name, setSelectedPerson) => {
+const handleClick = (name, selectedPerson, setSelectedPerson) => {
   console.log(`Clicked ${name}`);
-  setSelectedPerson(name);
+  if(name === selectedPerson) {
+    setSelectedPerson('');
+  } else {
+    setSelectedPerson(name);
+  }
 }
 
 export default App
