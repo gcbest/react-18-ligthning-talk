@@ -1,27 +1,23 @@
-import { useState } from 'react'
+import { useState, useTransition } from 'react'
 import { generatePosts } from './utils/data';
 import Posts from './components/Posts';
 
 import './App.css'
 
 const dummyPosts = generatePosts();
-const ALICE = 'Alice';
-const BOB = 'Bob';
 
 function App() {
-  const [selectedPerson, setSelectedPerson] = useState('');
+  const [isPending, startTransition] = useTransition();
+  const [filterTerm, setFilterTerm] = useState('');
 
-  const filteredPosts = filterPosts(selectedPerson);
+  const filteredPosts = filterPosts(filterTerm);
   
   return (
     <div className="App">
       <header className="App-header">
         <div>REACT 18</div>
-        <div>Person Selected: {selectedPerson}</div>
-        <div>
-          <button className={selectedPerson === ALICE ? 'active' : ''} onClick={() => handleClick(ALICE, selectedPerson, setSelectedPerson)}>{ALICE}</button>
-          <button className={selectedPerson === BOB ? 'active' : ''} onClick={() => handleClick(BOB, selectedPerson, setSelectedPerson)}>{BOB}</button>
-        </div>
+        <input type="text" onChange={(event) => updateFilterHandler(event, setFilterTerm, startTransition)} />
+        {/* {isPending && <p style={{color: 'white'}}>Updating List...</p>} */}
         <Posts filteredPosts={filteredPosts}/>
       </header>
 
@@ -33,16 +29,15 @@ const filterPosts = (filterTerm) => {
   if (!filterTerm) {
     return dummyPosts;
   }
-  return dummyPosts.filter((product) => product.author.includes(filterTerm));
+  return dummyPosts.filter((product) => product.body.includes(filterTerm));
 }
 
-const handleClick = (name, selectedPerson, setSelectedPerson) => {
-  console.log(`Clicked ${name}`);
-  if(name === selectedPerson) {
-    setSelectedPerson('');
-  } else {
-    setSelectedPerson(name);
-  }
+const updateFilterHandler = (event, setFilterTerm, startTransition) => {
+  console.log(`Letter clicked: ${event.target.value}`);
+
+  // startTransition(() => {
+    setFilterTerm(event.target.value);
+  // });
 }
 
 export default App

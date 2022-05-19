@@ -1,9 +1,6 @@
-import {useDeferredValue} from 'react';
-
 import './Posts.css';
 
 export default function Posts({filteredPosts}) {
-//   const deferredPosts = useDeferredValue(filteredPosts);
     return (
       <ul>
         {
