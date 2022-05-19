@@ -11,7 +11,8 @@
   "dependencies": {
     "lorem-ipsum": "^2.0.4",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "sleep-promise": "^9.1.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

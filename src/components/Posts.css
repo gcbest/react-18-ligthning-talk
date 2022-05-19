@@ -17,6 +17,7 @@ ul {
     border-radius: 12px;
     box-sizing: border-box;
     min-height: 200px;
+    width: 75vw;
     margin-top: 20px;
     padding: 30px;
     text-align: left;
